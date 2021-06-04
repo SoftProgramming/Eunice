@@ -1,0 +1,78 @@
+{
+ :job :discovery
+ :query {:db-uri "instancias/tinto.xls"
+         :out-file "descovery-result.xls"
+         :states [
+                  {:label "low citric_acid"   :colname "citric_acid" :f [-sigmoid 0.5 0.0]}
+                  {:label "mid citric_acid"   :colname "citric_acid" :f [gaussian 0.5 0.19]}
+                  {:label "high citric_acid"  :colname "citric_acid" :f [sigmoid  0.5 0.0]}
+                  
+                  {:label "low volatile_acidity"  :colname "volatile_acidity" :f [-sigmoid 0.85 0.19]}
+                  {:label "mid volatile_acidity"  :colname "volatile_acidity" :f [gaussian 0.85 0.18]}
+                  {:label "high volatile_acidity" :colname "volatile_acidity" :f [sigmoid  0.85 0.19]}
+                  
+                  {:label "low fixed_acidity"  :colname "fixed_acidity" :f [-sigmoid  10.25 5.2]}
+                  {:label "mid fixed_acidity"  :colname "fixed_acidity" :f [gaussian  10.25 1.74]}
+                  {:label "high fixed_acidity" :colname "fixed_acidity" :f [sigmoid   10.25 5.2]}
+                  
+                  {:label "low free_sulfur_dioxide"  :colname "free_sulfur_dioxide" :f [-sigmoid  36.5 3.0]}
+                  {:label "mid free_sulfur_dioxide"  :colname "free_sulfur_dioxide" :f [gaussian  36.5 10.46]}
+                  {:label "high free_sulfur_dioxide" :colname "free_sulfur_dioxide" :f [sigmoid   36.5 3.0]}
+                  
+                  {:label "low sulphates"  :colname "sulphates" :f [-sigmoid  1.165 0.42]}
+                  {:label "mid sulphates"  :colname "sulphates" :f [gaussian  1.165 0.17]}
+                  {:label "high sulphates" :colname "sulphates" :f [sigmoid   1.165 0.42]}
+                  
+                  {:label "low alcohol"  :colname "alcohol" :f [-sigmoid  11.65 9.0]}
+                  {:label "mid alcohol"  :colname "alcohol" :f [gaussian  11.65 1.1]}
+                  {:label "high alcohol" :colname "alcohol" :f [sigmoid   11.65 9.0]}
+                  
+                  {:label "low residual_sugar"  :colname "residual_sugar" :f [-sigmoid  8.2 1.4]}
+                  {:label "mid residual_sugar"  :colname "residual_sugar" :f [gaussian  8.2 1.41]}
+                  {:label "high residual_sugar" :colname "residual_sugar" :f [sigmoid   8.2 1.4]}
+                  
+                  {:label "low pH"  :colname "pH" :f [-sigmoid  3.375 2.93]}
+                  {:label "mid pH"  :colname "pH" :f [gaussian  3.375 0.15]}
+                  {:label "high pH" :colname "pH" :f [sigmoid   3.375 2.93]}
+                  
+                  {:label "low total_sulfur_dioxide"  :colname "total_sulfur_dioxide" :f [-sigmoid  147.5 8.0]}
+                  {:label "mid total_sulfur_dioxide"  :colname "total_sulfur_dioxide" :f [gaussian  147.5 32.9]}
+                  {:label "high total_sulfur_dioxide" :colname "total_sulfur_dioxide" :f [sigmoid   147.5 8.0]}
+                  
+                  {:label "low quality"  :colname "quality" :f [-sigmoid  5.5 4.0]}
+                  {:label "mid quality"  :colname "quality" :f [gaussian  5.5 0.81]}
+                  {:label "high quality" :colname "quality" :f [sigmoid   5.5 4.0]}
+                  
+                  {:label "low density"  :colname "density" :f [-sigmoid  0.99688 0.99182]}
+                  {:label "mid density"  :colname "density" :f [gaussian  0.99688 0.00189]}
+                  {:label "high density" :colname "density" :f [sigmoid   0.99688 0.99182]}
+                  
+                  {:label "low chlorides"  :colname "chlorides" :f [-sigmoid  0.3115 0.04298]}
+                  {:label "mid chlorides"  :colname "chlorides" :f [gaussian  0.3115 0.0471]}
+                  {:label "high chlorides" :colname "chlorides" :f [sigmoid   0.3115 0.04298]}
+                 ]
+         
+         :generator {:predicate [IMP "*" "high quality"]
+                          :operators [AND OR]
+                          :variables ["low citric_acid" "mid citric_acid" "high citric_acid"
+                                      "low volatile_acidity" "mid volatile_acidity" "high volatile_acidity"
+                                      "low fixed_acidity" "mid fixed_acidity" "high fixed_acidity"
+                                      "low free_sulfur_dioxide" "mid free_sulfur_dioxide" "high free_sulfur_dioxide"
+                                      "low sulphates" "mid sulphates" "high sulphates"
+                                      "low alcohol" "mid alcohol" "high alcohol"
+                                      "low residual_sugar" "mid residual_sugar" "high residual_sugar"
+                                      "low pH" "mid pH" "high pH"
+                                      "low total_sulfur_dioxide" "mid total_sulfur_dioxide" "high total_sulfur_dioxide"
+                                      "low density" "mid density" "high density"
+                                      "low chlorides" "mid chlorides" "high chlorides"]}
+         :logic [:GMBC]
+         :depth 1
+         :num-pop 50
+         :num-iter 30
+         :num-result 10
+         :min-truth-value 0.8
+         :mut-percentage 5
+         :adj-num-pop 1
+         :adj-num-iter 1
+         :adj-min-truth-value 0}}
+
